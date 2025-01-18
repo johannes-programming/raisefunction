@@ -10,6 +10,7 @@ authors = [
 ]
 classifiers = [
     "Development Status :: 2 - Pre-Alpha",
+    "Intended Audience :: Developers",
     "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Operating System :: OS Independent",
@@ -24,7 +25,7 @@ keywords = []
 name = "raisefunction"
 readme = "README.rst"
 requires-python = ">=3.8"
-version = "0.0.1.dev0"
+version = "0.0.2.dev0"
 
 [project.license]
 file = "LICENSE.txt"
