@@ -9,7 +9,7 @@ authors = [
     { email = "johannes-programming@mailfence.com", name = "Johannes" },
 ]
 classifiers = [
-    "Development Status :: 1 - Planning",
+    "Development Status :: 2 - Pre-Alpha",
     "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Operating System :: OS Independent",
@@ -19,12 +19,12 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = []
-description = "raisefunction"
+description = "This project provides a function that raises errors passed to it."
 keywords = []
 name = "raisefunction"
 readme = "README.rst"
-requires-python = ">=3.12.7"
-version = "0.0.0.dev0"
+requires-python = ">=3.8"
+version = "0.0.1.dev0"
 
 [project.license]
 file = "LICENSE.txt"
@@ -33,3 +33,4 @@ file = "LICENSE.txt"
 Download = "https://pypi.org/project/raisefunction/#files"
 Index = "https://pypi.org/project/raisefunction/"
 Source = "https://github.com/johannes-programming/raisefunction/"
+Website = "https://raisefunction.johannes-programming.online/"
