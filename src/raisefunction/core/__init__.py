@@ -6,26 +6,24 @@ __all__ = ["raisefunction"]
 
 
 @overloadable
-def raisefunction(*args: Any) -> int:
+def raisefunction(*args: Any, **kwargs: Any) -> int:
     "This function works as dispatcher."
-    if len(args) < 1:
-        raise TypeError(
-            "A raise statement requires at least 1 positional argument (0 given)."
-        )
-    if len(args) > 2:
-        raise TypeError(
-            "An assertion takes at most 2 positional arguments (%s given)." % len(args)
-        )
-    return len(args)
+    argc = len(args)
+    keys = set(kwargs.keys())
+    if argc <= 1 and keys == set():
+        return 1
+    if argc == 0 and keys == {"exc"}:
+        return 1
+    return 2
 
 
 @raisefunction.overload(1)
-def raisefunction(exc: BaseException, /) -> None:
+def raisefunction(exc: BaseException) -> None:
     "This function raises the given exception."
     raise exc
 
 
 @raisefunction.overload(2)
-def raisefunction(exc: BaseException, cause: Optional[BaseException], /) -> None:
+def raisefunction(exc: BaseException, cause: Optional[BaseException]) -> None:
     "This function raises the given exception with the given cause."
     raise exc from cause
