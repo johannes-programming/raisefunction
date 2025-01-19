@@ -27,7 +27,7 @@ keywords = []
 name = "raisefunction"
 readme = "README.rst"
 requires-python = ">=3.8"
-version = "1.0.0+local.2"
+version = "1.0.1"
 
 [project.license]
 file = "LICENSE.txt"
