@@ -19,13 +19,15 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Typing :: Typed",
 ]
-dependencies = []
+dependencies = [
+    "overloadable>=1.0.9",
+]
 description = "This project provides a function that raises errors passed to it."
 keywords = []
 name = "raisefunction"
 readme = "README.rst"
 requires-python = ">=3.8"
-version = "1.0.0"
+version = "1.0.0+local"
 
 [project.license]
 file = "LICENSE.txt"
