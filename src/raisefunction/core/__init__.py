@@ -8,8 +8,8 @@ __all__ = ["raisefunction"]
 @overloadable
 def raisefunction(*args: Any, **kwargs: Any) -> int:
     "This function works as dispatcher."
-    argc = len(args)
-    keys = set(kwargs.keys())
+    argc: int = len(args)
+    keys: set = set(kwargs.keys())
     if argc <= 1 and keys == set():
         return 1
     if argc == 0 and keys == {"exc"}:
