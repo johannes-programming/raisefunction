@@ -6,7 +6,7 @@ requires = [
 
 [project]
 authors = [
-    { email = "johannes-programming@mailfence.com", name = "Johannes" },
+    { email = "johannes.programming@gmail.com", name = "Johannes" },
 ]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -20,14 +20,14 @@ classifiers = [
     "Typing :: Typed",
 ]
 dependencies = [
-    "overloadable>=1.0.9",
+    "overloadable>=1.0.14,<2",
 ]
 description = "This project provides a function that raises errors passed to it."
 keywords = []
 name = "raisefunction"
 readme = "README.rst"
-requires-python = ">=3.8"
-version = "1.0.2"
+requires-python = ">=3.11"
+version = "1.0.3"
 
 [project.license]
 file = "LICENSE.txt"
