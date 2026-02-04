@@ -1,5 +1,2 @@
-from raisefunction.core import *
-from raisefunction.tests import *
-
-if __name__ == "__main__":
-    main()
+from raisefunction.core import raisefunction
+from raisefunction.tests import test
