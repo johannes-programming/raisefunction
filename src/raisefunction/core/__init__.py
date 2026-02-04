@@ -1,29 +1,27 @@
 from typing import *
 
-from overloadable import overloadable
-
 __all__ = ["raisefunction"]
 
-
-@overloadable
-def raisefunction(*args: Any, **kwargs: Any) -> int:
-    "This function works as dispatcher."
-    argc: int = len(args)
-    keys: set = set(kwargs.keys())
-    if argc <= 1 and keys == set():
-        return 1
-    if argc == 0 and keys == {"exc"}:
-        return 1
-    return 2
+DEFAULT = object()
 
 
-@raisefunction.overload(1)
-def raisefunction(exc: BaseException) -> None:
+@overload
+def raisefunction(
+    exc: BaseException | type[BaseException],
+) -> Never: ...
+@overload
+def raisefunction(
+    exc: BaseException | type[BaseException],
+    cause: Optional[BaseException],
+) -> Never: ...
+
+
+def raisefunction(
+    exc: BaseException | type[BaseException],
+    cause: Optional[BaseException] | object = DEFAULT,
+) -> Never:
     "This function raises the given exception."
-    raise exc
-
-
-@raisefunction.overload(2)
-def raisefunction(exc: BaseException, cause: Optional[BaseException]) -> None:
-    "This function raises the given exception with the given cause."
-    raise exc from cause
+    if cause is DEFAULT:
+        raise exc
+    else:
+        raise exc from cause

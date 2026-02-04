@@ -1,7 +1,7 @@
 [build-system]
 build-backend = "setuptools.build_meta"
 requires = [
-    "setuptools>=61.0",
+    "setuptools>=64.0",
 ]
 
 [project]
@@ -19,15 +19,13 @@ classifiers = [
     "Programming Language :: Python :: 3 :: Only",
     "Typing :: Typed",
 ]
-dependencies = [
-    "overloadable>=1.0.14,<2",
-]
+dependencies = []
 description = "This project provides a function that raises errors passed to it."
 keywords = []
 name = "raisefunction"
 readme = "README.rst"
 requires-python = ">=3.11"
-version = "1.0.3"
+version = "1.0.5"
 
 [project.license]
 file = "LICENSE.txt"
