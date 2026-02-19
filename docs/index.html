@@ -10,7 +10,7 @@
                 <p>
                     Version:
                     <select id="version">
-                        <option selected>1.0.5</option>
+                        <option selected>1.0</option>
                     </select>
                 </p>
             </dt>
@@ -26,7 +26,7 @@
                     <dd id="installCorpus"></dd>
                     <dt id="features">Features</dt>
                     <dd id="featuresCorpus">
-                        <dl class="heading4" version="1.0.5">
+                        <dl class="heading4" version="1.0">
                             <dt>
                                 <ul>
                                     <li>raisefunction.raisefunction(exc: BaseException) -> None</li>
@@ -36,7 +36,7 @@
                             <dd>
                                 This function binds the <code>raise</code> command.
                             </dd>
-                            <dt id="1.0.5-test">raisefunction.test() -> unittest.TextTestRunner</dt>
+                            <dt id="1--test">raisefunction.test() -> unittest.TextTestRunner</dt>
                             <dd class="testingCorpus"></dd>
                         </dl>
                     </dd>
@@ -48,13 +48,20 @@
             </dd>
         </dl>
     </body>
-    <script src="https://www.johannes-programming.online/script.js"></script>
-    <script>
+    <script type="module">
+        import {
+            setupImpressumCorpus,
+            setupInstallCorpus,
+            setupLicenseCorpus,
+            setupLinksCorpus,
+            setupTestingCorpus,
+            addMetaAndLinkTags,
+        } from "https://www.johannes-programming.online/script.js";
+        setupImpressumCorpus("raisefunction");
         setupInstallCorpus("raisefunction");
-        setupTestingCorpus("raisefunction");
         setupLicenseCorpus("raisefunction");
         setupLinksCorpus("raisefunction");
-        setupImpressumCorpus("raisefunction");
+        setupTestingCorpus("raisefunction");
         addMetaAndLinkTags();
     </script>
 </html>
