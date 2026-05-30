@@ -9,7 +9,7 @@ __all__ = ["Test3"]
 class Test3(unittest.TestCase):
 
     def go(self: Self, *, use_func: bool) -> None:
-        cm: unittest._AssertRaisesContext[ValueError]
+        cm: Any
         exc: ValueError
         exc = ValueError("no context")
         with self.assertRaises(ValueError) as cm:

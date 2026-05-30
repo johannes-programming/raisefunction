@@ -37,7 +37,9 @@ class Test1(unittest.TestCase):
 
         self.assertIs(cm.exception.__cause__, cause)
 
-    def test_raises_with_suppressed_context_when_cause_is_none(self: Self) -> None:
+    def test_raises_with_suppressed_context_when_cause_is_none(
+        self: Self,
+    ) -> None:
         exc: ValueError
         exc = ValueError("no context")
 
@@ -48,7 +50,9 @@ class Test1(unittest.TestCase):
 
         self.assertIsNone(cm.exception.__cause__)
 
-    def test_raising_class_that_requires_args_produces_type_error(self: Self) -> None:
+    def test_raising_class_that_requires_args_produces_type_error(
+        self: Self,
+    ) -> None:
         class NeedsArg(Exception):
             def __init__(self: Self, msg: str) -> None:
                 super().__init__(msg)

@@ -1,8 +1,8 @@
-from typing import *
+from typing import Final, Never, Optional, cast, overload
 
 __all__ = ["raisefunction"]
 
-DEFAULT = object()
+DEFAULT: Final[object] = object()
 
 
 @overload
@@ -24,4 +24,4 @@ def raisefunction(
     if cause is DEFAULT:
         raise exc
     else:
-        raise exc from cause
+        raise exc from cast(Optional[BaseException], cause)
