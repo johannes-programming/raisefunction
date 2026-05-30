@@ -6,7 +6,7 @@ This project provides a function that raises errors passed to it.
 Installation
 ------------
 
-To install ``raisefunction``, you can use ``pip``. 
+To install ``raisefunction``, you can use ``pip``.
 Open your terminal and run:
 
 .. code-block:: shell
@@ -16,12 +16,12 @@ Open your terminal and run:
 Features
 --------
 
-``raisefunction.raisefunction(exc: BaseException) -> None`` ``raisefunction.raisefunction(exc: BaseException, cause: Optional[BaseException]) -> None``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+``raisefunction.raisefunction(exc: BaseException) -> Never`` ``raisefunction.raisefunction(exc: BaseException, cause: Optional[BaseException]) -> Never``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This function binds the raise command.
 
-``raisefunction.tests.test() -> unittest.TextTestRunner``
+``raisefunction.tests.test() -> unittest.TextTestResult``
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This project can be tested through its test function.

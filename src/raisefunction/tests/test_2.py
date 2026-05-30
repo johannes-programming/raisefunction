@@ -8,7 +8,7 @@ __all__ = ["Test2"]
 
 class Test2(unittest.TestCase):
     def test_raises_given_exception_instance_without_cause(self: Self) -> None:
-        cm: unittest._AssertRaisesContext[ValueError]
+        cm: Any
         exc: ValueError
         exc = ValueError("boom")
 
@@ -21,7 +21,7 @@ class Test2(unittest.TestCase):
         self.assertIsNone(cm.exception.__cause__)
 
     def test_raises_given_exception_class_without_cause(self: Self) -> None:
-        cm: unittest._AssertRaisesContext[ValueError]
+        cm: Any
         with self.assertRaises(ValueError) as cm:
             core.raisefunction(ValueError)
 
@@ -30,7 +30,7 @@ class Test2(unittest.TestCase):
 
     def test_raises_with_explicit_cause(self: Self) -> None:
         cause: RuntimeError
-        cm: unittest._AssertRaisesContext[ValueError]
+        cm: Any
         exc: ValueError
         cause = RuntimeError("original")
         exc = ValueError("wrapped")
@@ -41,7 +41,7 @@ class Test2(unittest.TestCase):
         self.assertIs(cm.exception.__cause__, cause)
 
     def test_raise_from_None(self: Self) -> None:
-        cm: unittest._AssertRaisesContext[ValueError]
+        cm: Any
         exc: ValueError
         one: int
         zero: int
@@ -59,12 +59,14 @@ class Test2(unittest.TestCase):
         self.assertIsInstance(cm.exception.__context__, ZeroDivisionError)
         self.assertTrue(cm.exception.__suppress_context__)
 
-    def test_raising_class_that_requires_args_produces_type_error(self: Self) -> None:
+    def test_raising_class_that_requires_args_produces_type_error(
+        self: Self,
+    ) -> None:
         class NeedsArg(Exception):
             def __init__(self: Self, msg: str) -> None:
                 super().__init__(msg)
 
-        cm: unittest._AssertRaisesContext[BaseException]
+        cm: Any
         with self.assertRaises(TypeError) as cm:
             core.raisefunction(NeedsArg)
 
