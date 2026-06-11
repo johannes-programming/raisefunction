@@ -11,7 +11,6 @@ authors = [
 classifiers = [
     "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Developers",
-    "License :: OSI Approved :: MIT License",
     "Natural Language :: English",
     "Operating System :: OS Independent",
     "Programming Language :: Python",
@@ -22,13 +21,14 @@ classifiers = [
 dependencies = []
 description = "This project provides a function that raises errors passed to it."
 keywords = []
+license = "MIT"
+license-files = [
+    "LICENSE.txt",
+]
 name = "raisefunction"
 readme = "README.rst"
 requires-python = ">=3.11"
-version = "1.1.0"
-
-[project.license]
-file = "LICENSE.txt"
+version = "1.1.1"
 
 [project.urls]
 Download = "https://pypi.org/project/raisefunction/#files"
