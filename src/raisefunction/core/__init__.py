@@ -1,8 +1,13 @@
-from typing import Final, Never, Optional, cast, overload
+from __future__ import annotations
 
-__all__ = ["raisefunction"]
+__all__: list[str] = ["raisefunction"]
 
-DEFAULT: Final[object] = object()
+import enum
+from typing import Never, overload
+
+
+class Default(enum.Enum):
+    DEFAULT = None
 
 
 @overload
@@ -12,16 +17,16 @@ def raisefunction(
 @overload
 def raisefunction(
     exc: BaseException | type[BaseException],
-    cause: Optional[BaseException],
+    cause: BaseException | None,
 ) -> Never: ...
 
 
 def raisefunction(
     exc: BaseException | type[BaseException],
-    cause: Optional[BaseException] | object = DEFAULT,
+    cause: BaseException | None | Default = Default.DEFAULT,
 ) -> Never:
     "This function raises the given exception."
-    if cause is DEFAULT:
+    if isinstance(cause, Default):
         raise exc
     else:
-        raise exc from cast(Optional[BaseException], cause)
+        raise exc from cause

@@ -1,14 +1,16 @@
+from __future__ import annotations
+
+__all__: list[str] = ["Test3"]
+
 import unittest
-from typing import *
+from typing import Any, Self
 
 from raisefunction import core
-
-__all__ = ["Test3"]
 
 
 class Test3(unittest.TestCase):
 
-    def go(self: Self, *, use_func: bool) -> None:
+    def go(self: Self, /, *, use_func: bool) -> None:
         cm: Any
         exc: ValueError
         exc = ValueError("no context")
@@ -18,7 +20,7 @@ class Test3(unittest.TestCase):
         self.assertIsInstance(cm.exception.__context__, ZeroDivisionError)
         self.assertTrue(cm.exception.__suppress_context__)
 
-    def go_with(self: Self, *, use_func: bool, exc: Exception) -> None:
+    def go_with(self: Self, /, *, exc: Exception, use_func: bool) -> None:
         one: int
         zero: int
         try:
@@ -33,7 +35,7 @@ class Test3(unittest.TestCase):
             else:
                 raise exc from None
 
-    def test_raise_from_None(self: Self) -> None:
+    def test_raise_from_None(self: Self, /) -> None:
         self.go(use_func=False)
         self.go(use_func=True)
 

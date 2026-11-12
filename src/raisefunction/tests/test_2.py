@@ -1,53 +1,57 @@
+from __future__ import annotations
+
+__all__: list[str] = ["Test2"]
+
 import unittest
-from typing import *
+from typing import Any, Self
 
 from raisefunction import core
 
-__all__ = ["Test2"]
-
 
 class Test2(unittest.TestCase):
-    def test_raises_given_exception_instance_without_cause(self: Self) -> None:
-        cm: Any
+    def test_raises_given_exception_instance_without_cause(
+        self: Self, /
+    ) -> None:
+        assertion: Any
         exc: ValueError
         exc = ValueError("boom")
 
-        with self.assertRaises(ValueError) as cm:
+        with self.assertRaises(ValueError) as assertion:
             core.raisefunction(exc)
 
-        self.assertIs(cm.exception, exc)
+        self.assertIs(assertion.exception, exc)
         # When no explicit cause is given, __cause__ is normally None.
         # __context__ may or may not be set depending on context.
-        self.assertIsNone(cm.exception.__cause__)
+        self.assertIsNone(assertion.exception.__cause__)
 
-    def test_raises_given_exception_class_without_cause(self: Self) -> None:
-        cm: Any
-        with self.assertRaises(ValueError) as cm:
+    def test_raises_given_exception_class_without_cause(self: Self, /) -> None:
+        assertion: Any
+        with self.assertRaises(ValueError) as assertion:
             core.raisefunction(ValueError)
 
-        self.assertIsInstance(cm.exception, ValueError)
-        self.assertIsNone(cm.exception.__cause__)
+        self.assertIsInstance(assertion.exception, ValueError)
+        self.assertIsNone(assertion.exception.__cause__)
 
-    def test_raises_with_explicit_cause(self: Self) -> None:
+    def test_raises_with_explicit_cause(self: Self, /) -> None:
+        assertion: Any
         cause: RuntimeError
-        cm: Any
         exc: ValueError
         cause = RuntimeError("original")
         exc = ValueError("wrapped")
 
-        with self.assertRaises(ValueError) as cm:
+        with self.assertRaises(ValueError) as assertion:
             core.raisefunction(exc, cause)
 
-        self.assertIs(cm.exception.__cause__, cause)
+        self.assertIs(assertion.exception.__cause__, cause)
 
-    def test_raise_from_None(self: Self) -> None:
-        cm: Any
+    def test_raise_from_None(self: Self, /) -> None:
+        assertion: Any
         exc: ValueError
         one: int
         zero: int
 
         exc = ValueError("no context")
-        with self.assertRaises(ValueError) as cm:
+        with self.assertRaises(ValueError) as assertion:
             try:
                 # Create a real context exception
                 one = 1
@@ -55,23 +59,26 @@ class Test2(unittest.TestCase):
                 one / zero
             except ZeroDivisionError:
                 raise exc from None
-        self.assertIsNone(cm.exception.__cause__)
-        self.assertIsInstance(cm.exception.__context__, ZeroDivisionError)
-        self.assertTrue(cm.exception.__suppress_context__)
+        self.assertIsNone(assertion.exception.__cause__)
+        self.assertIsInstance(
+            assertion.exception.__context__, ZeroDivisionError
+        )
+        self.assertTrue(assertion.exception.__suppress_context__)
 
     def test_raising_class_that_requires_args_produces_type_error(
         self: Self,
     ) -> None:
+        assertion: Any
+
         class NeedsArg(Exception):
             def __init__(self: Self, msg: str) -> None:
                 super().__init__(msg)
 
-        cm: Any
-        with self.assertRaises(TypeError) as cm:
+        with self.assertRaises(TypeError) as assertion:
             core.raisefunction(NeedsArg)
 
         # Optional: sanity check on the error type/message
-        self.assertIsInstance(cm.exception, TypeError)
+        self.assertIsInstance(assertion.exception, TypeError)
 
 
 if __name__ == "__main__":

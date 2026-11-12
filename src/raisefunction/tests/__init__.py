@@ -1,16 +1,14 @@
-import unittest
+from __future__ import annotations
 
-__all__ = ["test"]
+__all__: list[str] = ["test"]
+
+import unittest
 
 
 def test() -> unittest.TextTestResult:
     "This function runs all the tests."
     loader: unittest.TestLoader
-    tests: unittest.TestSuite
-    runner: unittest.TextTestRunner
-    result: unittest.TextTestResult
+    suite: unittest.TestSuite
     loader = unittest.TestLoader()
-    tests = loader.discover(start_dir="raisefunction.tests")
-    runner = unittest.TextTestRunner()
-    result = runner.run(tests)
-    return result
+    suite = loader.discover(start_dir="raisefunction.tests")
+    return unittest.TextTestRunner().run(suite)

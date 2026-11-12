@@ -1,54 +1,62 @@
+from __future__ import annotations
+
+__all__: list[str] = ["Test1"]
+
 import unittest
-from typing import *
+from typing import Any, Self
 
 from raisefunction import core
 
-__all__ = ["Test1"]
-
 
 class Test1(unittest.TestCase):
-    def test_raises_given_exception_instance_without_cause(self: Self) -> None:
+    def test_raises_given_exception_instance_without_cause(
+        self: Self, /
+    ) -> None:
+        assertion: Any
         exc: ValueError
         exc = ValueError("boom")
 
-        with self.assertRaises(ValueError) as cm:
+        with self.assertRaises(ValueError) as assertion:
             core.raisefunction(exc)
 
-        self.assertIs(cm.exception, exc)
+        self.assertIs(assertion.exception, exc)
         # When no explicit cause is given, __cause__ is normally None
         # and __context__ may or may not be set depending on context.
-        self.assertIsNone(cm.exception.__cause__)
+        self.assertIsNone(assertion.exception.__cause__)
 
-    def test_raises_given_exception_class_without_cause(self: Self) -> None:
+    def test_raises_given_exception_class_without_cause(self: Self, /) -> None:
+        assertion: Any
         # Using a class mirrors: raise ValueError
-        with self.assertRaises(ValueError) as cm:
+        with self.assertRaises(ValueError) as assertion:
             core.raisefunction(ValueError)
-        self.assertIsInstance(cm.exception, ValueError)
-        self.assertIsNone(cm.exception.__cause__)
+        self.assertIsInstance(assertion.exception, ValueError)
+        self.assertIsNone(assertion.exception.__cause__)
 
-    def test_raises_with_explicit_cause(self: Self) -> None:
+    def test_raises_with_explicit_cause(self: Self, /) -> None:
+        assertion: Any
         cause: RuntimeError
         exc: ValueError
         cause = RuntimeError("original")
         exc = ValueError("wrapped")
 
-        with self.assertRaises(ValueError) as cm:
+        with self.assertRaises(ValueError) as assertion:
             core.raisefunction(exc, cause)
 
-        self.assertIs(cm.exception.__cause__, cause)
+        self.assertIs(assertion.exception.__cause__, cause)
 
     def test_raises_with_suppressed_context_when_cause_is_none(
         self: Self,
     ) -> None:
+        assertion: Any
         exc: ValueError
         exc = ValueError("no context")
 
         # Explicit `from None` should result in __cause__ being None,
         # and suppress linking to any active exception.
-        with self.assertRaises(ValueError) as cm:
+        with self.assertRaises(ValueError) as assertion:
             core.raisefunction(exc, None)
 
-        self.assertIsNone(cm.exception.__cause__)
+        self.assertIsNone(assertion.exception.__cause__)
 
     def test_raising_class_that_requires_args_produces_type_error(
         self: Self,

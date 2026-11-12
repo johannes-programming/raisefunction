@@ -25,8 +25,8 @@ This project is strictly typed with ``mypy``.
 Features
 --------
 
-``raisefunction.raisefunction(exc: BaseException) -> Never`` ``raisefunction.raisefunction(exc: BaseException, cause: Optional[BaseException]) -> Never``
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+``raisefunction.raisefunction(exc: BaseException) -> Never`` ``raisefunction.raisefunction(exc: BaseException, cause: BaseException | None) -> Never``
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 This function binds the raise command.
 
